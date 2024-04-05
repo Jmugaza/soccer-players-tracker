@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const playersCtrl = require('../controllers/players');
+const ensureLoggedIn = require('../config/ensureLoggedIn');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
