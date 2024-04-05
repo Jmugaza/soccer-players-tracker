@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soccer Players Tracker</title>
+</head>
+<body>
+    <nav>
+        <img src="/images/spt.svg">
+        <a href="/team/new"	<%- title === 'Add Team' ? 'class="active"' : '' %>>ADD TEAM</a>
+        <a href="/players/new" <%- title === 'Add Player' ? 'class="active"' : '' %>>ADD PLAYER</a>
+        <a href="/players" <%- title === 'All Players' ? 'class="active"' : '' %>>ALL PLAYERS</a>
+      </nav>
+      <main>
+        <h1><%= title %></h1> 
