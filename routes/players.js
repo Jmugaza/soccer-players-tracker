@@ -3,9 +3,19 @@ var router = express.Router();
 const playersCtrl = require('../controllers/players');
 const ensureLoggedIn = require('../config/ensureLoggedIn');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+//GET /players
+router.get('/', playersCtrl.index);
+
+//GET /players/new
+router.get('/new', ensureLoggedIn, playersCtrl.new);
+
+// GET /players/:id 
+router.get('/:id', ensureLoggedIn, playersCtrl.show);
+
+//Get /players
+router.post('/', ensureLoggedIn, playersCtrl.create)
+
+
+
 
 module.exports = router;

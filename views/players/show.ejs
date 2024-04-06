@@ -1,0 +1,26 @@
+<%- include('../partials/header') %>
+
+<h3><%= title %></h3>
+<section id="show-page">
+    <div>First Name: </div>
+    <div><%= player.firstName %></div>
+    <div>Last Name: </div>
+    <div><%= player.lastName %></div>
+    <div>Position: </div>
+    <div>Sport: </div>
+    <div><%= player.sport %></div>
+    <div><%= player.position %></div>
+    <div>Age: </div>
+    <div><%= player.age %></div>
+    <div>Retired: </div>
+    <div><%= player.retired ? 'Yes' : 'Nope' %></div>
+    <!-- show current team -->
+    <div>Team:</div>
+    <ul>
+      <%- player.currentTeam.map(t => 
+        `<li>${t.name} </li>`
+      ).join('') %>
+    </ul>
+    <!-- end cast list -->
+</section>
+<%- include('../partials/footer') %>

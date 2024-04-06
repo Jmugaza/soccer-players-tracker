@@ -1,0 +1,25 @@
+<%- include('../partials/header') %>
+<h3><%= title %></h3>
+<form id="new-form" action="/players" method="POST">
+    <label>First Name:</label>
+    <input type="text" name="firstName">
+    <label>Last Name:</label>
+    <input type="text" name="lastName">
+    <label>Position:</label>
+    <input type="text" name="position">
+    <label>Sports:</label>
+    <select name="Sports">
+      <option value="Soccer">Soccer</option>
+      <option value="Basketball">Basketball</option>
+      <option value="Football">Football</option>
+      <option value="Baseball">Baseball</option>
+      <option value="Tennis">Tennis</option>
+    </select>
+    <label>Age</label>
+    <input type="text" name="age">
+    <label>Retired:</label>
+    <input type="checkbox" name="retired" checked>
+    <button type="submit">Add Player</button>
+</form>
+
+<%- include('../partials/footer') %>
