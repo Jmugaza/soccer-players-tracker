@@ -19,7 +19,7 @@ async function show(req, res){
 }
 
 async function newPlayer(req, res){
-    res.render('players/new', {title: 'Add Player', errMsg: ''})
+    res.render('players/new', { title: 'Add Player', errMsg: ''})
 }
 
 async function create(req, res){
@@ -29,7 +29,7 @@ async function create(req, res){
         const player = await Player.create(req.body);
         res.redirect(`/players/${player._id}`)
     } catch (err){
+        console.log(err)
         res.render('players/new', {errMsg: err.message})
     }
-
 }
