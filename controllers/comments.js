@@ -2,7 +2,17 @@ const Player = require("../models/player");
 
 module.exports = {
   create,
+  delete: deleteComment
 };
+
+async function deleteComment(req, res){
+  const player = await Player.findOne({ 'comments._id': req.params.id, 'comments.user': req.user._id });
+  if (!player) return res.redirect('/comments')
+  player.comments.remove(req.params.id);
+ // Save the updated player doc
+  await player.save();
+  res.redirect(`/players/${player._id}`)
+}
 
 async function create(req, res) {
   const player = await Player.findById(req.params.id);
