@@ -1,23 +1,72 @@
 <%- include('../partials/header') %>
 
 <section id="show-page">
-    <div>Player Name: </div>
-    <div><%= player.playerName %></div>
-    <div>Sport: </div>
-    <div><%= player.sport %></div>
-    <div>Position: </div>
-    <div><%= player.position %></div>
-    <div>Age: </div>
-    <div><%= player.age %></div>
-    <div>Retired: </div>
-    <div><%= player.retired ? 'Yes' : 'Nope' %></div>
-    <!-- show current team -->
-    <div>Team:</div>
-    <ul>
-      <%- player.currentTeam.map(t => 
-        `<li>${t.name} </li>`
-      ).join('') %>
-    </ul>
-    <!-- end cast list -->
+  <div>Player Name:</div>
+  <div><%= player.playerName %></div>
+  <div>Sport:</div>
+  <div><%= player.sport %></div>
+  <div>Position:</div>
+  <div><%= player.position %></div>
+  <div>Age:</div>
+  <div><%= player.age %></div>
+  <div>Retired:</div>
+  <div><%= player.retired ? 'Yes' : 'Nope' %></div>
+  <!-- show current team -->
+  <div>Team:</div>
+  <ul>
+    <%- player.currentTeam.map(t => `
+    <li>${t.name}</li>
+    ` ).join('') %>
+  </ul>
+  <!-- end cast list -->
 </section>
+
+<br/><br />
+<h2>Comments</h2>
+<form
+  id="add-comment-form"
+  method="POST"
+  action="/players/<%= player._id %>/comments"
+>
+  <label>Comment</label>
+  <textarea name="content"></textarea>
+  <button type="submit">Add Comment</button>
+</form>
+
+<% if(player.comments.length) { %>
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Date</th>
+        <th>Comment</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% player.comments.forEach(function(c) { %>
+      <tr>
+        <td class="comment-user">
+          <img
+            alt="avatar"
+            src="<%= c.userAvatar %>"
+            referrerpolicy="no-referrer"
+          /><%= c.userName %>
+        </td>
+        <td><%= c.createdAt.toLocaleDateString() %></td>
+        <td><%= c.content %></td>
+      </tr>
+      <% }); %>
+      <!-- <tr>
+        <td colspan="3"></td>
+        <td>
+          <strong><%= (player.comments.length).toFixed(1) %></strong>
+        </td>
+      </tr> -->
+    </tbody>
+  </table>
+<% } else { %>
+  <h5>No Comments Yet</h5>
+<% } %>
+
 <%- include('../partials/footer') %>

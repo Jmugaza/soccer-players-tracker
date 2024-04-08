@@ -16,7 +16,8 @@ require('./config/passport');
 
 
 let indexRouter = require('./routes/index');
-let playersRouter = require('./routes/players.js');
+let playersRouter = require('./routes/players');
+let commentsRouter = require('./routes/comments')
 
 var app = express();
 
@@ -30,7 +31,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
-
 
 app.use(session({
   secret: process.env.SECRET,
@@ -51,6 +51,7 @@ app.use(methodOverride('_method'));
 
 app.use('/', indexRouter);
 app.use('/players', playersRouter);
+app.use('/', commentsRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

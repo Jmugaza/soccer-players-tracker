@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new Schema({
     content: {
-        type: String, 
+        type: String,
         require: true
     },
     user: {
@@ -31,7 +31,7 @@ const playerSchema = new Schema({
     }],
     position: {type: String, required: true},
     age:{type: Number},
-    retired: {type: Boolean, default: false},
+    retired: {type: Boolean, default: true},
     comments:[commentSchema]
 }, {
     timestamps: true

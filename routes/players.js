@@ -4,7 +4,7 @@ const playersCtrl = require('../controllers/players');
 const ensureLoggedIn = require('../config/ensureLoggedIn');
 
 //GET /players
-router.get('/', playersCtrl.index);
+router.get('/', ensureLoggedIn, playersCtrl.index);
 
 //GET /players/new
 router.get('/new', ensureLoggedIn, playersCtrl.new);
