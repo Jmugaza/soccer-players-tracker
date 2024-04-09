@@ -10,17 +10,30 @@
   <div>Age:</div>
   <div><%= player.age %></div>
   <div>Retired:</div>
-  <div><%= player.retired ? 'Yes' : 'Nope' %></div>
+  <div><%= player.retired ? 'Yes' : 'No' %></div>
   <!-- show current team -->
   <div>Team:</div>
   <ul>
-    <%- player.currentTeam.map(t => `
-    <li>${t.name}</li>
-    ` ).join('') %>
+    <%- player.currentTeam.map(t =>
+      `<li>${t.name} <small>${t.founded.toLocaleDateString()}</small></li>`
+    ).join('') %>
   </ul>
 </section>
 
-<br/><br />
+<form
+  id="add-team-to-player"
+  action="/players/<%= player._id %>/teams"
+  method="POST"
+>
+  <select name="teamId">
+    <%- teams.map(p => 
+      `<option value="${t._id}">${t.name}</option>`
+    ).join('') %>
+  </select>
+  <button type="submit">Add to Team</button>
+</form>
+
+<br /><br />
 <h2>Comments</h2>
 <form
   id="add-comment-form"
@@ -33,42 +46,38 @@
 </form>
 
 <% if(player.comments.length) { %>
-  <table>
-    <thead>
-      <tr>
-        <th>User</th>
-        <th>Date</th>
-        <th>Comment</th>
-      </tr>
-    </thead>
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Date</th>
+      <th>Comment</th>
+    </tr>
+  </thead>
 
-    <tbody>
-      <% player.comments.forEach(function(c) { %>
-      <tr>
-        <td class="comment-user">
-          <img
-            alt="avatar"
-            src="<%= c.userAvatar %>"
-            referrerpolicy="no-referrer"
-          /><%= c.userName %>
-        </td>
-        <td><%= c.createdAt.toLocaleDateString() %></td>
-        <td><%= c.content %></td>
-        <td>
-          <% if (user?._id.equals(c.user)) { %>
-            <form action="/comments/<%= c._id %>?_method=DELETE" 
-              method="POST"
-            >
-              <button type="submit">X</button>
-            </form>
-          <% } %>
-        </td>
-      </tr>
-      <% }); %>
-    </tbody>
-  </table>
+  <tbody>
+    <% player.comments.forEach(function(c) { %>
+    <tr>
+      <td class="comment-user">
+        <img
+          alt="avatar"
+          src="<%= c.userAvatar %>"
+          referrerpolicy="no-referrer"
+        /><%= c.userName %>
+      </td>
+      <td><%= c.createdAt.toLocaleDateString() %></td>
+      <td><%= c.content %></td>
+      <td>
+        <% if (user?._id.equals(c.user)) { %>
+        <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
+          <button type="submit">X</button>
+        </form>
+        <% } %>
+      </td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
 <% } else { %>
-  <h5>No Comments Yet</h5>
-<% } %>
-
-<%- include('../partials/footer') %>
+<h5>No Comments Yet</h5>
+<% } %> <%- include('../partials/footer') %>

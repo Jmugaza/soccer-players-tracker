@@ -1,4 +1,5 @@
 const Player = require('../models/player');
+const Team = require('../models/team')
 
 module.exports = {
     index,
@@ -15,7 +16,9 @@ async function index(req, res) {
 
 async function show(req, res){
     const player = await Player.findById(req.params.id);
-    res.render('players/show', {title: 'Player Details', player});
+
+    const teams = await Team.find({_id:{$nin: player.team}}).sort('teamName')
+    res.render('players/show', {title: 'Player Details', player, teams});
 }
 
 async function newPlayer(req, res){
