@@ -6,7 +6,7 @@
 Sports Players Tracker is a web application that allows users to manage and track sports players and teams. Users can add, and view details of players and teams. The application also includes features such as commenting on players and managing associations between players and teams.
 
 
-
+##Screenchot
 <img src="./public/images/wireframe.png" alt="Sports Players Tracker" style="width: 80%; border: 2px solid #ccc; border-radius: 5px; display: block; margin: 20px auto;" />
  
 
@@ -24,3 +24,8 @@ Sports Players Tracker is a web application that allows users to manage and trac
 ## Live Link
 
 You can check out the live version of the application [here](https://sports-players-tracker-59f53b8999c0.herokuapp.com/).
+
+
+## Trello Board
+
+You can check out the project planing [here](https://trello.com/invite/b/ii13PCAR/ATTI9654c49625fa134227431eb115f236012B510F4B/project-2).
