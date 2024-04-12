@@ -9,11 +9,8 @@ const teamSchema = new Schema({
         unique: true
     },
     founded: {
-        type: Number,
-        default: function() {
-            return new Date().getFullYear();
-        }
-    },
+        type: Date
+    }
 }, {
     timestamps: true
 })

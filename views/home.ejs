@@ -1,17 +1,43 @@
 <%- include('./partials/header') %>
 
-<div class="home">
-    <h1>Welcome to Sports Players Tracker</h1> 
+<section class="flex flex-col lg:flex-row justify-center items-center min-h-screen bg-gray-100 px-4 sm:px-6 lg:px-8">
+    <!-- Login Card -->
+    <div class="bg-blue-100 shadow-lg rounded-lg p-6 lg:p-8 w-full max-w-md lg:max-w-lg mx-auto text-center lg:mx-4 mb-4 lg:mb-0">
+        <h2 class="text-2xl font-bold mb-4">Welcome to Sports Players Tracker</h2>
 
-    <% if (!user) { %>
-        <a href="/auth/google" class="login">LOG IN WITH&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
-    <% } %>
+        <% if (!user) { %>
+            <p class="text-black-500 mb-4">
+                Track players and teams easily with our app.
+            </p>
+            <div class="flex justify-center">
+                <a href="/auth/google" class="flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg px-4 py-2 w-full max-w-xs">
+                    LOG IN WITH
+                    <img src="https://i.imgur.com/FHjYyi0.png" alt="Google logo" class="w-6 h-6 mr-2">
+                    
+                </a>
+            </div>
+        <% } else { %>
+            <p>Welcome back, <%= user.name %>!</p>
+        <% } %>
+    </div>
 
-    <h2>TO <br><br> GET STARTED</h2>
-</div>
+    <!-- App Information Card -->
+    <div class="bg-blue-100 shadow-lg rounded-lg p-6 lg:p-8 w-full max-w-md lg:max-w-lg mx-auto lg:mx-4">
+        <h3 class="text-2xl font-bold mb-4">Sports Players Tracker</h3>
+        <p class="text-black-500 mb-4">
+            The ultimate app for managing and tracking your sports teams and players with ease.
+            Whether you're a coach, player, or sports enthusiast, our app offers a comprehensive suite of tools to help you stay
+            organized and focused on your game.
+        </p>
 
-
-
+        <h3 class="font-semibold text-lg">Features:</h3>
+        <ul class="list-none text-gray-500 mt-2 ">
+            <li><strong class="text-blue-500 list-none">Manage Players:</strong> Add and organize player profiles with all the essential information.</li>
+            <li><strong class="text-blue-500">Create Teams:</strong> Easily create and manage teams, including associating a team with a player.</li>
+            <li><strong class="text-blue-500">Comments:</strong> Add comments to your favorite player to show support.</li>
+        </ul>
+    </div>
+</section>
 
 
 <%- include('./partials/footer') %>

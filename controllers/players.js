@@ -15,10 +15,13 @@ async function index(req, res) {
 };
 
 async function show(req, res){
-    const player = await Player.findById(req.params.id);
+    const player = await Player.findById(req.params.id).populate('currentTeam');
 
-    const teams = await Team.find({_id:{$nin: player.team}}).sort('teamName')
+    const teams = await Team.find({_id:{$nin: player.currentTeam}}).sort('teamName')
+    console.log(teams)
+    console.log(player)
     res.render('players/show', {title: 'Player Details', player, teams});
+
 }
 
 async function newPlayer(req, res){

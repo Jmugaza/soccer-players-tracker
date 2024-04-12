@@ -3,20 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href='/stylesheets/style.css'>
   <title>Sports Players Tracker</title>
 
 </head>
-<body>
-    <nav>
-        <img src="/images/spt.svg">
-        
-        <% if (user) { %>
-          <a href="/players" <%- title === 'All Players' ? 'class="active"' : '' %>>ALL PLAYERS</a>
-          <a href="/players/new" <%- title === 'Add Player' ? 'class="active"' : '' %>>ADD PLAYER</a>
-          <a href="/teams/new"	<%- title === 'Add Team' ? 'class="active"' : '' %>>ADD TEAM</a>
-          <a href="/logout">LOG OUT</a>
-        <% } %>
-      </nav>
-      <main>
+<body >
+  <nav class="flex items-center justify-between bg-0f4c5c p-4 shadow-md ">
+    <!-- Logo -->
+    <img src="/images/spt.svg" alt="Sports Players Tracker Logo" class="w-12 h-12">
+
+    <!-- Navigation Links -->
+    <% if (user) { %>
+        <div class="flex space-x-10">
+          <a href="/players" class="<%- title === 'All Players' ? 'text-blue-600' : 'text-white-700 hover:text-white-500' %> font-bold">ALL PLAYERS</a>
+          <a href="/players/new" class="<%- title === 'Add Player' ? 'text-blue-600' : 'text-white-700 hover:text-blue-500' %> font-bold">ADD PLAYER</a>
+          <a href="/teams/new" class="<%- title === 'Add Team' ? 'text-blue-600' : 'text-white-700 hover:text-blue-500' %> font-bold">ADD TEAM</a>
+          <a href="/logout" class="text-white-700 hover:text-blue-400 font-bold">LOG OUT</a>
+        </div>
+    <% } %>
+  </nav>
+
+<main>
         

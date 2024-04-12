@@ -1,83 +1,117 @@
 <%- include('../partials/header') %>
 
-<section id="show-page">
-  <div>Player Name:</div>
-  <div><%= player.playerName %></div>
-  <div>Sport:</div>
-  <div><%= player.sport %></div>
-  <div>Position:</div>
-  <div><%= player.position %></div>
-  <div>Age:</div>
-  <div><%= player.age %></div>
-  <div>Retired:</div>
-  <div><%= player.retired ? 'Yes' : 'No' %></div>
-  <!-- show current team -->
-  <div>Team:</div>
-  <ul>
-    <%- player.currentTeam.map(t =>
-      `<li>${t.name} <small>${t.founded.toLocaleDateString()}</small></li>`
-    ).join('') %>
-  </ul>
+<section
+  id="show-page"
+  class="p-8 bg-white rounded-lg shadow-lg mt-20 w-3/4 mx-auto"
+>
+<h3 class="text-2xl font-bold mb-4 mt-4 text-center"><%= title %></h3>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="font-semibold">Player Name:</div>
+    <div><%= player.playerName %></div>
+    <div class="font-semibold">Sport:</div>
+    <div><%= player.sport %></div>
+    <div class="font-semibold">Position:</div>
+    <div><%= player.position %></div>
+    <div class="font-semibold">Age:</div>
+    <div><%= player.age %></div>
+    <div class="font-semibold">Retired:</div>
+    <div><%= player.retired ? 'Yes' : 'No' %></div>
+    <div class="font-semibold col-span-2">Team:</div>
+    <ul class="ml-4 list-disc list-inside col-span-2">
+      <%- player.currentTeam.map(t => `
+      <li>${t.teamName} <small>${t.founded}</small></li>
+      ` ).join('') %>
+    </ul>
+  </div>
+
+  <!-- Form to add a team to the player -->
+  <div class="mt-6">
+    <form
+      id="add-team-to-player"
+      action="/players/<%= player._id %>/teams"
+      method="POST"
+      class="p-4 bg-white rounded-lg shadow-lg"
+    >
+      <div class="flex space-x-4">
+        <select name="teamId" class="p-2 border border-gray-300 rounded-lg">
+          <%- teams.map(t => `
+          <option value="${t._id}">${t.teamName}</option>
+          ` ).join('') %>
+        </select>
+        <button
+          type="submit"
+          class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold"
+        >
+          Add to Team
+        </button>
+      </div>
+    </form>
+  </div>
 </section>
 
-<form
-  id="add-team-to-player"
-  action="/players/<%= player._id %>/teams"
-  method="POST"
->
-  <select name="teamId">
-    <%- teams.map(p => 
-      `<option value="${t._id}">${t.name}</option>`
-    ).join('') %>
-  </select>
-  <button type="submit">Add to Team</button>
-</form>
+<section class="p-8 bg-white rounded-lg shadow-lg w-3/4 mx-auto mt-10">
+  <h2 class="text-xl font-bold mb-4 text-center">Comments</h2>
 
-<br /><br />
-<h2>Comments</h2>
-<form
-  id="add-comment-form"
-  method="POST"
-  action="/players/<%= player._id %>/comments"
->
-  <label>Comment</label>
-  <textarea name="content"></textarea>
-  <button type="submit">Add Comment</button>
-</form>
+  <% if(player.comments.length) { %>
+  <table class="w-full bg-white rounded-lg shadow-lg mb-6">
+    <thead class="bg-blue-100">
+      <tr>
+        <th class="p-2 font-semibold">User</th>
+        <th class="p-2 font-semibold">Date</th>
+        <th class="p-2 font-semibold">Comment</th>
+        <th class="p-2 font-semibold">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% player.comments.forEach(function(c) { %>
+      <tr class="border-b">
+        <td class="p-2 flex items-center">
+          <img
+            alt="avatar"
+            src="<%= c.userAvatar %>"
+            class="w-8 h-8 rounded-full mr-2"
+            referrerpolicy="no-referrer"
+          />
+          <%= c.userName %>
+        </td>
+        <td class="p-2"><%= c.createdAt.toLocaleDateString() %></td>
+        <td class="p-2"><%= c.content %></td>
+        <td class="p-2">
+          <% if (user?._id.equals(c.user)) { %>
+          <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
+            <button type="submit" class="text-red-600 hover:text-red-800">
+              X
+            </button>
+          </form>
+          <% } %>
+        </td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+  <% } else { %>
+  <h5 class="font-semibold text-center">No Comments Yet</h5>
+  <% } %>
 
-<% if(player.comments.length) { %>
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Date</th>
-      <th>Comment</th>
-    </tr>
-  </thead>
+  <form
+    id="add-comment-form"
+    method="POST"
+    action="/players/<%= player._id %>/comments"
+    class="p-6 bg-white text-center rounded-lg shadow-lg w-full max-w-lg mx-auto mt-6"
+  >
+    <label class="block font-semibold mb-2 mt-2">Comment</label>
+    <textarea
+      name="content"
+      class="w-full p-2 border border-gray-300 rounded-lg mb-4"
+    ></textarea>
+    <button
+      type="submit"
+      class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold"
+    >
+      Add Comment
+    </button>
+  </form>
+</section>
 
-  <tbody>
-    <% player.comments.forEach(function(c) { %>
-    <tr>
-      <td class="comment-user">
-        <img
-          alt="avatar"
-          src="<%= c.userAvatar %>"
-          referrerpolicy="no-referrer"
-        /><%= c.userName %>
-      </td>
-      <td><%= c.createdAt.toLocaleDateString() %></td>
-      <td><%= c.content %></td>
-      <td>
-        <% if (user?._id.equals(c.user)) { %>
-        <form action="/comments/<%= c._id %>?_method=DELETE" method="POST">
-          <button type="submit">X</button>
-        </form>
-        <% } %>
-      </td>
-    </tr>
-    <% }); %>
-  </tbody>
-</table>
-<% } else { %>
-<h5>No Comments Yet</h5>
-<% } %> <%- include('../partials/footer') %>
+
+<%- include('../partials/footer') %>

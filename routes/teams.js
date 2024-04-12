@@ -8,10 +8,11 @@ const ensureLoggedIn = require('../config/ensureLoggedIn');
 // GET /teams/new 
 router.get('/teams/new', ensureLoggedIn, teamsCtrl.new);
 
-//POST /teams 
+// POST /teams 
 router.post('/teams', ensureLoggedIn, teamsCtrl.create);
 
-//POST /players/:id/teams
+// POST /players/:id/teams
+router.post('/players/:id/teams', ensureLoggedIn, teamsCtrl.addToTeam)
 
 
 module.exports = router;

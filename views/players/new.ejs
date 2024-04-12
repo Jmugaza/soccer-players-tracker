@@ -1,23 +1,56 @@
 <%- include('../partials/header') %>
 
-<h3><%= title %></h3>
-<form id="new-form" action="/players" method="POST">
-    <label>Player Name:</label>
-    <input type="text" name="playerName">
-    <label>Position:</label>
-    <input type="text" name="position">
-    <label>Sport:</label>
-    <select name="sports">
-      <option value="Soccer">Soccer</option>
-      <option value="Basketball">Basketball</option>
-      <option value="Football">Football</option>
-      <option value="Baseball">Baseball</option>
-      <option value="Tennis">Tennis</option>
-    </select>
-    <label>Age</label>
-    <input type="text" name="age">
-    <label>Retired:</label>
-    <input type="checkbox" name="retired" checked>
-    <button type="submit">Add Player</button>
-</form>
+<section class="p-6 bg-white rounded-lg shadow-lg max-w-md mx-auto mt-20">
+  <h3 class="text-2xl font-bold mb-4 mt-4 text-center"><%= title %></h3>
+  <form id="new-form" action="/players" method="POST" class="space-y-4">
+    <div>
+      <label class="block font-semibold mb-1">Player Name:</label>
+      <input
+        type="text"
+        name="playerName"
+        class="w-full p-2 border border-gray-300 rounded-lg"
+        required
+      />
+    </div>
+    <div>
+      <label class="block font-semibold mb-1">Position:</label>
+      <input
+        type="text"
+        name="position"
+        class="w-full p-2 border border-gray-300 rounded-lg"
+        required
+      />
+    </div>
+    <div>
+      <label class="block font-semibold mb-1">Sport:</label>
+      <select name="sport" class="w-full p-2 border border-gray-300 rounded-lg">
+        <option value="Soccer">Soccer</option>
+        <option value="Basketball">Basketball</option>
+        <option value="Football">Football</option>
+        <option value="Baseball">Baseball</option>
+        <option value="Tennis">Tennis</option>
+      </select>
+    </div>
+    <div>
+      <label class="block font-semibold mb-1">Age:</label>
+      <input
+        type="number"
+        name="age"
+        class="w-full p-2 border border-gray-300 rounded-lg"
+        required
+      />
+    </div>
+    <div class="flex items-center space-x-2">
+      <input type="checkbox" name="retired" checked class="w-4 h-4 rounded" />
+      <label class="font-semibold">Retired:</label>
+    </div>
+    <button
+      type="submit"
+      class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg px-4 py-2"
+    >
+      Add Player
+    </button>
+  </form>
+</section>
+
 <%- include('../partials/footer') %>

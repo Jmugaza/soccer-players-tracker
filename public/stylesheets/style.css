@@ -8,88 +8,38 @@ body {
   margin: 0;
   height: 100vh;
   display: grid;
+  position: relative;
   grid-template-rows: 50px 1fr;
   grid-template-areas: 
     "nav"
     "main"
+    "footer"
+  
 }
 
-body > nav {
-  grid-area: nav;
-  background-color: #4348AC;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 20px 0 30px;
+nav{
+  background-color: #0f4c5c;
+  color: #F3B618;
 }
 
-nav > img {
-  width: 34px;
-  object-fit: contain;
-  margin-right: auto;
+h2,h3 {
+  color: #F3B618;
+  text-decoration: underline;
+}
+p{
+  color: #333;
 }
 
-body > main {
-  grid-area: main;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #4578A7;
-  padding: 20px;
-  overflow-y: scroll;
-}
-
-body > main h1:first-child {
-  margin-bottom: 50px;
-}
-
-nav > a {
-  margin: 20px;
-  text-decoration: none;
+footer {
+  position: fixed; /* Fixed positioning */
+  bottom: 0; /* Align the footer to the bottom of the viewport */
+  width: 100%; /* Make the footer span the full width */
+  background-color: #0f4c5c;
+  margin-top: auto;
   padding: 10px;
-  border-radius: 5px;
-  color: #C9CC30;
-}
-
-nav > a:hover:not(.active) {
-  color: white;
-  background-color: #4348AC;
-}
-
-nav > a.active {
-  color: white;
-  cursor: default;
-}
-
-.login {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 34px;
-  color: #4348AC;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.login img {
-  height: 30px;
-}
-
-.home h1, h2{
-  font-size: 3vmin;
   text-align: center;
 }
 
-.home {
-  width: 55vmin;
-  height: 40vmin;
-  display: flex;
-  flex-direction: column;
-  margin-top: 50px;
-  color: whitesmoke;
-  background-color: black;
-  padding: 15px;
-  text-align: center;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px #C9CC30 ;
+footer p {
+  color: #F3B618;
 }
