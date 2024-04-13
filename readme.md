@@ -10,8 +10,6 @@ Sports Players Tracker is a web application that allows users to manage and trac
 
 <img src="./public/images/wireframe.png" alt="Sports Players Tracker" style="width: 80%; border: 2px solid #ccc; border-radius: 5px; display: block; margin: 20px auto;" />
  
-
-
 ## Technology Used
 
 - **JavaScript**: Implements the application's logic and interactivity.
@@ -22,11 +20,11 @@ Sports Players Tracker is a web application that allows users to manage and trac
 - **CSS**: Handles the application's styling and user interface design.
 - **Tailwind CSS**: A utility-first CSS framework used for styling the application.
 
+## Trello Board
+
+You can check out the project planing [here](https://trello.com/invite/b/ii13PCAR/ATTI9654c49625fa134227431eb115f236012B510F4B/project-2).
+
 ## Live Link
 
 You can check out the live version of the application [here](https://sports-players-tracker-59f53b8999c0.herokuapp.com/).
 
-
-## Trello Board
-
-You can check out the project planing [here](https://trello.com/invite/b/ii13PCAR/ATTI9654c49625fa134227431eb115f236012B510F4B/project-2).

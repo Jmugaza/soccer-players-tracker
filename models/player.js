@@ -16,7 +16,7 @@ const commentSchema = new Schema({
     userAvatar: String,
 }, {
     timestamps: true
-})
+});
 
 
 const playerSchema = new Schema({

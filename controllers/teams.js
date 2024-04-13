@@ -16,7 +16,6 @@ async function addToTeam(req, res) {
     await player.save();
     res.redirect(`/players/${player._id}`);
 }
-  
 
 async function newTeam(req, res){
     const teams = await Team.find({}).sort('teamName');
