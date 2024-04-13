@@ -26,5 +26,5 @@ You can check out the project planing [here](https://trello.com/invite/b/ii13PCA
 
 ## Live Link
 
-You can check out the live version of the application [here](https://sports-players-tracker-59f53b8999c0.herokuapp.com/).
+You can check out the live version of the application [here](https://sports-players-tracker-app-65f3167f6f32.herokuapp.com/).
 
